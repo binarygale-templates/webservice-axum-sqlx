@@ -1,7 +1,7 @@
 use axum::{extract::State, http::StatusCode, response::IntoResponse, routing::get, Json, Router};
 use serde_json::json;
 
-use crate::{errors::HealthCheckError, AppState};
+use crate::{errors::ResponseError, AppState};
 
 /// Builds the fallback router.
 pub fn build() -> Router<AppState> {
@@ -24,7 +24,7 @@ async fn livez_handler() -> impl IntoResponse {
 #[tracing::instrument(skip(app_state))]
 async fn readyz_handler(
     State(app_state): State<AppState>,
-) -> Result<impl IntoResponse, HealthCheckError> {
+) -> Result<impl IntoResponse, ResponseError> {
     let _ = sqlx::query!(
         r#"select
         now() as test_time,
