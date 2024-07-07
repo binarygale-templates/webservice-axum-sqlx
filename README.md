@@ -8,7 +8,7 @@ On top of everything in `webservice-axum`, this adds:
 
 - a globally available DB Pool that automatically scales to the number of CPU cores to match the default Tokio scaling.
 - automatic migrations on startup.
-- a database trigger to automatically update an `updated_at` column, see the initial database scheme. This was inspired by SeaORM. :)
+- a database trigger to automatically update an `updated_at` column, see the initial database scheme. This was inspired by Diesel. :)
 - a readyness check that fails if the database connection is unavailable.
 
 ## Linting
